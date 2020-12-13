@@ -1,27 +1,20 @@
 const input = document.querySelector('input')
 const button = document.querySelector('button')
-const tbody = document.querySelector('tbody')
 
 const nominals = [50000, 20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
 let zasobyKs = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20]
 let poctyKs = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 function render () {
-    tbody.innerHTML = ''
+    $('tbody').html('')
 
-    for (let i = 0; i < nominals.length; i++) {
-        const row = document.createElement('TR')
-        const tdNominal = document.createElement('TD')
-        const tdPocetKs = document.createElement('TD')
-
-        tdNominal.textContent = (nominals[i] / 100).toFixed(2)
-        tdPocetKs.textContent = poctyKs[i]
-
-        row.appendChild(tdNominal)
-        row.appendChild(tdPocetKs)
-
-        tbody.appendChild(row)
-    }
+    nominals.forEach((val, idx) => {
+        $('tbody').append(
+            $('<tr>')
+                .append($('<td>', { text: (val / 100).toFixed(2) }))
+                .append($('<td>', { text: poctyKs[idx] }))
+        )
+    })
 }
 
 function vydaj () {
